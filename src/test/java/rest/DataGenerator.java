@@ -11,6 +11,7 @@ import java.util.Locale;
 import static io.restassured.RestAssured.given;
 
 public class DataGenerator {
+
     private DataGenerator() {
     }
 

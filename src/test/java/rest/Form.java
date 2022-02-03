@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Form {
+
     private String login;
     private String password;
     private String status;

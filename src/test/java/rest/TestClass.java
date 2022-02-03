@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static rest.DataGenerator.RegistrationInfo.setUpUser;
 
-
 public class TestClass {
 
     @BeforeEach
@@ -22,6 +21,7 @@ public class TestClass {
     }
 
     private void loginForm(String login, String password) {
+
         open("http://localhost:9999");
         $("[data-test-id=login] input").setValue(login);
         $("[data-test-id=password] input").setValue(password);
@@ -30,6 +30,7 @@ public class TestClass {
 
     @Test
     public void shouldLoginExistsActiveUser() {
+
         Form user = DataGenerator.RegistrationInfo.generateUserInfo("ru", "active");
         setUpUser(user);
         loginForm(user.getLogin(), user.getPassword());
@@ -38,6 +39,7 @@ public class TestClass {
 
     @Test
     public void shouldNotLoginExistsBlockedUser() {
+
         Form user = DataGenerator.RegistrationInfo.generateUserInfo("ru", "blocked");
         setUpUser(user);
         loginForm(user.getLogin(), user.getPassword());
@@ -47,6 +49,7 @@ public class TestClass {
 
     @Test
     public void shouldNotLoginWithWrongUsername() {
+
         Form user = DataGenerator.RegistrationInfo.generateUserInfo("ru", "active");
         setUpUser(user);
         loginForm(DataGenerator.RegistrationInfo.makeUserName("ru"), user.getPassword());
@@ -55,9 +58,11 @@ public class TestClass {
 
     @Test
     public void shouldNotLoginWithWrongPassword() {
+
         Form user = DataGenerator.RegistrationInfo.generateUserInfo("ru", "active");
         setUpUser(user);
         loginForm(user.getLogin(), DataGenerator.RegistrationInfo.makeUserPassword("ru"));
         $(withText("Неверно указан логин или пароль")).shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
+
 }
